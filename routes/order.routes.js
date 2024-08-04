@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { saveOrderConfirmation } = require("../controllers/");
+const { saveOrderConfirmation } = require("../controllers/orderController");
 
 router.route("/saveOrder").post(saveOrderConfirmation);
 
