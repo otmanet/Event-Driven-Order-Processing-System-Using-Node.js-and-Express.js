@@ -12,17 +12,17 @@ event-driven-app/ <br>
 │
 ├── controllers/ <br>
 │   └── orderController.js <br>
-│
+│<br>
 ├── events/ <br>
 │   └── eventHandlers.js <br>
 │   └── eventEmitter.js <br>
-│
+│<br>
 ├── routes/ <br>
 │   └── orderRoutes.js <br>
-│
+│<br>
 ├── services/ <br>
 │   └── emailService.js <br>
 │   └── panierService.js <br>
-│
+│<br>
 ├── app.js <br>
 └── package.json
