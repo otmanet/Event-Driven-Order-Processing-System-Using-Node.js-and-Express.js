@@ -3,7 +3,11 @@ const asyncHandler = require("express-async-handler");
 const fs = require("fs");
 const saveOrderConfirmation = asyncHandler(async (req, res) => {
   const order = req.body;
+  // Emit orderCreated event
   eventEmitter.emit("orderCreated", order);
+  return res.status(200).json({
+    message: "Order processing initiated.",
+  });
 });
 
 async function saveOrder(order) {
@@ -17,6 +21,8 @@ async function saveOrder(order) {
     quantity,
   } = order;
   const fileExist = fs.existsSync("data.json");
+  console.log({ fileExist });
+
   if (!fileExist) {
     console.log("data.json does not exist!");
     return;

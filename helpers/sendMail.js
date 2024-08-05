@@ -19,6 +19,7 @@ async function sendMail(object = any) {
       text: object.message,
       html: object.html,
     });
+    console.log(`send email to ${object.to}`);
   } catch (error) {
     console.error(error);
   }
