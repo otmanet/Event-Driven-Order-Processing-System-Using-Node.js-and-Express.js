@@ -11,7 +11,7 @@ const saveOrderConfirmation = asyncHandler(async (req, res) => {
   });
 });
 
-async function saveOrder(order) {
+const saveOrder = asyncHandler(async (order) => {
   let {
     nam_product,
     type_product,
@@ -26,13 +26,6 @@ async function saveOrder(order) {
 
   if (!fileExist) {
     console.log("data.json does not exist!");
-    fs.writeFile("data.json", (err) => {
-      if (err) {
-        console.error(err);
-      } else {
-         console.log("create file data.json successfully");
-      }
-    });
   }
   fs.writeFile(
     "data.json",
@@ -51,14 +44,14 @@ async function saveOrder(order) {
       (error) => {
         if (error) {
           console.error(err);
-          res.status(500).send("Error saving data");
+          console.log("Error saving data");
         } else {
-          res.send("Data saved successfully");
+          console.log("Data saved successfully");
         }
       }
     )
   );
-}
+});
 
 module.exports = {
   saveOrder,
