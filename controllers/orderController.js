@@ -4,6 +4,7 @@ const fs = require("fs");
 const saveOrderConfirmation = asyncHandler(async (req, res) => {
   const order = req.body;
   // Emit orderCreated event
+  console.log("Emitting orderCreated event with order:", order);
   eventEmitter.emit("orderCreated", order);
   return res.status(200).json({
     message: "Order processing initiated.",

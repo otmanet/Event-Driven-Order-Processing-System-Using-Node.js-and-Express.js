@@ -4,12 +4,12 @@ const sendMail = require("../helpers/sendMail");
 //Handle event registration event :
 
 eventEmitter.on("orderCreated", async (event) => {
+  console.log("orderCreated event received:", event);
   try {
     await saveOrder(event);
-    console.log("save order");
     eventEmitter.emit("sendMailToCustomer", event);
     setTimeout(() => {
-      console.log(`Email sent to ${user.email}`);
+      console.log(`start process new order added from ${event.email_customer}`);
     }, 1000);
   } catch (err) {
     console.log(err);
@@ -28,10 +28,10 @@ eventEmitter.on("sendMailToCustomer", async (event) => {
     };
     await sendMail(objectEmail);
     console.log("send mail to  customer");
-    eventEmitter.emit("sendMailToSupplied", order);
+    eventEmitter.emit("sendMailToSupplied", event);
 
     setTimeout(() => {
-      console.log(`Email sent to ${user.email}`);
+      console.log(`send email successfully to ${event.email_customer}`);
     }, 1000);
   } catch (err) {
     console.log(err);
@@ -52,9 +52,10 @@ eventEmitter.on("sendMailToSupplied", async (event) => {
     await sendMail(objectEmail);
     console.log("send mail to  supplied");
     setTimeout(() => {
-      console.log(`Email sent to ${user.email}`);
+      console.log(`send email successfully to  ${event.email_supplied}`);
     }, 1000);
   } catch (err) {
     console.log(err);
   }
 });
+console.log("Event handlers registered.");
