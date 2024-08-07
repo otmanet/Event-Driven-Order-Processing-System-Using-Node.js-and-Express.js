@@ -26,7 +26,13 @@ async function saveOrder(order) {
 
   if (!fileExist) {
     console.log("data.json does not exist!");
-    return;
+    fs.writeFile("data.json", (err) => {
+      if (err) {
+        console.error(err);
+      } else {
+         console.log("create file data.json successfully");
+      }
+    });
   }
   fs.writeFile(
     "data.json",
