@@ -1,12 +1,36 @@
 const eventEmitter = require("./eventEmitter");
-const { saveOrder } = require("../controllers/orderController");
 const sendMail = require("../helpers/sendMail");
-//Handle event registration event :
+const createFile = require("../helpers/createFile");
+const fs = require("fs");
 
+//Handle event registration event :
 eventEmitter.on("orderCreated", async (event) => {
-  console.log("orderCreated event received:", event);
   try {
-    await saveOrder(event);
+    let {
+      nam_product,
+      type_product,
+      address_customer,
+      phone_customer,
+      email_customer,
+      email_supplied,
+      quantity,
+      series,
+    } = event;
+    const nameFile = "order.json";
+    // Create the file (assuming createFile is a function you've defined)
+    await createFile(nameFile);
+    const jsonData = JSON.stringify({
+      nam_product,
+      type_product,
+      address_customer,
+      phone_customer,
+      email_customer,
+      email_supplied,
+      quantity,
+      series,
+    });
+    fs.writeFile(nameFile, jsonData);
+    console.log("orderCreated event received:", event);
     eventEmitter.emit("sendMailToCustomer", event);
     setTimeout(() => {
       console.log(`start process new order added from ${event.email_customer}`);
@@ -15,7 +39,6 @@ eventEmitter.on("orderCreated", async (event) => {
     console.log(err);
   }
 });
-
 eventEmitter.on("sendMailToCustomer", async (event) => {
   try {
     const objectEmail = {
