@@ -1,0 +1,1 @@
+{"nam_product":"SR-128996","type_product":"keyboard","address_customer":"hay el amal rue damas N°01 souk sebt old nemma","phone_customer":"0671707011","email_customer":"otmanetahri1@gmail.com","email_supplied":"otmanetahri1@gmail.com","quantity":125,"series":"RS12784"}
