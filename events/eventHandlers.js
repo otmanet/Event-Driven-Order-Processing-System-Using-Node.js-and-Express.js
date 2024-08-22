@@ -1,7 +1,6 @@
 const eventEmitter = require("./eventEmitter");
 const sendMail = require("../helpers/sendMail");
 const createFile = require("../helpers/createFile");
-// Import promises for asynchronous file operations
 const fs = require("fs");
 
 //Handle  registration event :
